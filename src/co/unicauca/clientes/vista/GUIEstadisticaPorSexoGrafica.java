@@ -4,22 +4,22 @@
  * and open the template in the editor.
  */
 package co.unicauca.clientes.vista;
-
-import co.unicauca.clientes.modelo.ClientesDB;
 import java.util.Observable;
-import java.util.Observer;
-
+import co.unicauca.clientes.modelo.ClientesDB;
+import java.awt.Color;
 /**
  *
- * @author Crist
+ * @author pablo
  */
-public class GUIEstadisticaPorSexoGrafica extends javax.swing.JFrame implements Observer{
+public class GUIEstadisticaPorSexoGrafica extends javax.swing.JFrame implements java.util.Observer {
 
     /**
      * Creates new form GUIEstadisticaPorSexoGrafica
      */
-    public GUIEstadisticaPorSexoGrafica() {
+    public GUIEstadisticaPorSexoGrafica(int h, int v) {
         initComponents();
+        setLocation(h, v);
+        setVisible(true);
     }
 
     /**
@@ -31,17 +31,77 @@ public class GUIEstadisticaPorSexoGrafica extends javax.swing.JFrame implements 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
+        barHombres = new javax.swing.JProgressBar();
+        barMujeres = new javax.swing.JProgressBar();
+        lblHombres = new javax.swing.JLabel();
+        lblMujeres = new javax.swing.JLabel();
+        lblPHombres = new javax.swing.JLabel();
+        lblPMujeres = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        barHombres.setOrientation(1);
+
+        barMujeres.setOrientation(1);
+
+        lblHombres.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblHombres.setText("Hombres");
+
+        lblMujeres.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblMujeres.setText("Mujeres");
+
+        lblPHombres.setText(" ");
+
+        lblPMujeres.setText(" ");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(105, 105, 105)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(barHombres, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblHombres)
+                    .addComponent(lblPHombres))
+                .addGap(91, 91, 91)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPMujeres)
+                    .addComponent(lblMujeres)
+                    .addComponent(barMujeres, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(105, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPHombres)
+                    .addComponent(lblPMujeres))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(barMujeres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(barHombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblHombres)
+                    .addComponent(lblMujeres))
+                .addContainerGap(44, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -77,19 +137,54 @@ public class GUIEstadisticaPorSexoGrafica extends javax.swing.JFrame implements 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GUIEstadisticaPorSexoGrafica().setVisible(true);
+                new GUIEstadisticaPorSexoGrafica(400,500).setVisible(true);
             }
         });
     }
-
-    @Override
-    public void update(Observable obs, Object obj) {
-        ClientesDB cliBd = (ClientesDB) obs;
-        this.setTitle("Profesion: "+cliBd.getProfesion());
-        graficar(cliBd.getTotalHombres(),cliBd.getTotalMujeres());
-        
-    }
-
+public void update(Observable obs, Object obj) {
+    ClientesDB cliDB=(ClientesDB) obs;
+    this.setTitle("Profesion: "+cliDB.getProfesion());
+    graficar(cliDB.getTotalHombres(),cliDB.getTotalMujeres());
+}
+public void graficar (int pCantHombres, int pCantMujeres){
+    float vTotal=(float)(pCantHombres+pCantMujeres);
+    float vPorcHombres=((pCantHombres*100)/vTotal);
+    float vPorcMujeres=((pCantMujeres*100)/vTotal);
+    
+    lblPHombres.setText(String.valueOf(vPorcHombres)+"%"); 
+    lblPMujeres.setText(String.valueOf(vPorcMujeres)+"%");
+    barHombres.setValue((int)(vPorcHombres));
+    barMujeres.setValue((int)(vPorcMujeres));
+    barHombres.setForeground(CambiarColor(vPorcHombres));
+    barMujeres.setForeground(CambiarColor(vPorcMujeres));
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JProgressBar barHombres;
+    private javax.swing.JProgressBar barMujeres;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblHombres;
+    private javax.swing.JLabel lblMujeres;
+    private javax.swing.JLabel lblPHombres;
+    private javax.swing.JLabel lblPMujeres;
     // End of variables declaration//GEN-END:variables
+
+    private Color CambiarColor(float pPorcentaje) {
+        Color vColor;
+        if(pPorcentaje <= 0){
+            vColor = new Color(227,20,11);
+        }else if(pPorcentaje < 20){
+            vColor = new Color(241,163,11);
+        }else if(pPorcentaje < 40){
+            vColor = new Color(240,247,75);
+        }else if(pPorcentaje < 60){
+            vColor = new Color(106,235,11);
+        }else if(pPorcentaje < 80){
+            vColor = new Color(11,230,18);
+        }else if(pPorcentaje < 100){
+            vColor = new Color(41,196,245);
+        }else{
+            vColor = new Color(65,91,246);
+        }
+        return vColor;
+    }
 }
