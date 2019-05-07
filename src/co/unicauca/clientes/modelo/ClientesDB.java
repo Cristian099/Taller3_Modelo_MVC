@@ -74,7 +74,7 @@ public class ClientesDB extends java.util.Observable {
     }
     
     public void agregarCliente(String nombres, String profesion, String sexo){
-        // implementar método
+        this.clientes.add(new Cliente(nombres, profesion, sexo));
     }
     
     public void borrarClientes(){
