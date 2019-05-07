@@ -5,6 +5,7 @@
  */
 package co.unicauca.clientes.vista;
 
+import co.unicauca.clientes.modelo.ClientesDB;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -82,7 +83,10 @@ public class GUIEstadisticaPorSexoGrafica extends javax.swing.JFrame implements 
     }
 
     @Override
-    public void update(Observable o, Object o1) {
+    public void update(Observable obs, Object obj) {
+        ClientesDB cliBd = (ClientesDB) obs;
+        this.setTitle("Profesion: "+cliBd.getProfesion());
+        graficar(cliBd.getTotalHombres(),cliBd.getTotalMujeres());
         
     }
 
