@@ -24,6 +24,7 @@ public class RunMVC {
 
         myModel.addObserver(myView);
         myModel.addObserver(myView2);
+        myModel.addObserver(myView3);
 
         GUIBusquedaClientesController myController = new GUIBusquedaClientesController();
         myController.addModel(myModel);
