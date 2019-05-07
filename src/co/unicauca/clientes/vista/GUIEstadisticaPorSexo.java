@@ -23,6 +23,7 @@ public class GUIEstadisticaPorSexo extends javax.swing.JFrame implements Observe
         setSize(400, 200);
         setLocation(h, v);
         setVisible(true);
+        
     }
 
     /**
@@ -44,6 +45,12 @@ public class GUIEstadisticaPorSexo extends javax.swing.JFrame implements Observe
         jLabel1.setText("HOMBRES:");
 
         jLabel2.setText("MUJERES:");
+
+        txtHombres.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtHombres.setEnabled(false);
+
+        txtMujeres.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtMujeres.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -124,6 +131,7 @@ public class GUIEstadisticaPorSexo extends javax.swing.JFrame implements Observe
     @Override
     public void update(Observable obs, Object obj) {
         ClientesDB cliB = (ClientesDB) obs;
+        
         txtHombres.setText(""+cliB.getTotalHombres());
         txtMujeres.setText(""+cliB.getTotalMujeres());
         this.setTitle("Estadistica por sexo. Profesion: "+cliB.getProfesion());

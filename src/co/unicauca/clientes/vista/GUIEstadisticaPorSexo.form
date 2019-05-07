@@ -71,8 +71,20 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtHombres">
+      <Properties>
+        <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtMujeres">
+      <Properties>
+        <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
